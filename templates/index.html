@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday, Luc!</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link rel="shortcut icon" href="https://th.bing.com/th/id/OIP.SBXkCeDpQpy7PV4aqdxlqgHaHa?w=198&h=198&c=7&r=0&o=5&dpr=1.3&pid=1.7" type="image/x-icon">
+</head>
+<body>
+    <h1>Happy Birthday, Luc!</h1>
+    <p>This is kind of late, so I added an extra feature to make up for it!</p>
+    <h2>Your very own meme generator!</h2>
+    <p>Just enter a keyword and it will generate a meme for you!</p>
+    <div>
+        <form action="/meme" method="POST" name="keyword">
+            <input type="text" name="keyword" placeholder="Enter a keyword">
+            <button type="submit">Generate Meme</button>
+            <button type="submit" name="random">Random Meme</button>
+        </form>
+        <img src="{{ meme_image_url }}" alt="">
+    </div>
+</body>
+</html>
