@@ -14,7 +14,9 @@ def get_meme_image_from_keyword(keyword: str):
 
     # Search for posts in r/memes containing the keyword
     subreddit = reddit.subreddit("memes")
-    search_results = subreddit.search(keyword, limit=10)
+    search_results = subreddit.search(keyword, limit=50)
+    if not search_results:
+        return None
     search_results = [
         submission for submission in search_results
         if not submission.over_18 and submission.url.endswith(('.jpg', '.jpeg', '.png', '.gif'))]
@@ -29,7 +31,7 @@ def index():
 @app.route('/meme', methods=['GET', 'POST'])
 def meme():
     if request.method == 'POST':
-        if 'random' in request.form:
+        if 'random' in request.form: 
             random_keywords = ['funny', 'cats', 'dogs', 'relatable', 'gaming', 'sports', 'comical', 'puppy', 'volleyball', 'school', 'dark', 'fun', 'happy', 'brainrot', 'skibidi', 'sigma', 'music']
             keyword = random.choice(random_keywords)
             meme_image_url = get_meme_image_from_keyword(keyword)
@@ -38,7 +40,7 @@ def meme():
         meme_image_url = get_meme_image_from_keyword(keyword)
         if meme_image_url:
             return render_template('index.html', meme_image_url=meme_image_url)
-    return render_template('index.html', meme_image_url=None)
+    return render_template('index.html')
 
 if __name__ == '__main__':
     port = int(os.environ.get("PORT", 5000))  # Default to 5000 for local dev

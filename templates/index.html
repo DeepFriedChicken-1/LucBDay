@@ -15,8 +15,9 @@
     <div>
         <form action="/meme" method="POST" name="keyword">
             <input type="text" name="keyword" placeholder="Enter a keyword">
-            <button type="submit">Generate Meme</button>
-            <button type="submit" name="random">Random Meme</button>
+            <button type="submit" name="generate">Generate Meme</button>
+            <label for="generate">Don't click Generate if textbox is empty. It'll break the site, lol.</label>
+            <button type="submit" name="random" >Random Meme</button>
         </form>
         <img src="{{ meme_image_url }}" alt="">
     </div>
